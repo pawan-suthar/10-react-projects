@@ -2,7 +2,7 @@ import style from "./contactheader.module.css";
 
 const ContactHeader = () => {
   return (
-    <div className={`${style.contact_sec} container`}>
+    <div className={`${style.contact_sec} `}>
       <h1>CONTACT US</h1>
       <p>
         LET’S CONNECT: WE’RE HERE TO HELP, AND WE’D LOVE TO HEAR FROM YOU!

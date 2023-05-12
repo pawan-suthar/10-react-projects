@@ -1,10 +1,16 @@
 .contact_sec h1{
     font-size: 48px;
     font-weight: 800;
+    max-width: 80%;
 
 }
 .contact_sec p{
     /* font-size: 16px; */
     font-weight: 500;
+    max-width: 80%;
 
+}
+.contact_sec{
+    max-width: 1000px;
+    margin: 0 auto;
 }
