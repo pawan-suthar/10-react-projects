@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Numselect from "./Numselect";
 import TotalScore from "./TotalScore";
+import Rolldice from "./Rolldice";
 
 const Gamestart = () => {
   return (
@@ -9,6 +10,7 @@ const Gamestart = () => {
         <TotalScore />
         <Numselect />
       </div>
+      <Rolldice />
     </Maincontainer>
   );
 };
