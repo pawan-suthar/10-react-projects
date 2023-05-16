@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 const Numlist = styled.div`
@@ -27,17 +26,25 @@ const Box = styled.div`
   background-color: ${(props) => (props.isselected ? "black" : "white")};
   color: ${(props) => (!props.isselected ? "black" : "white")};
 `;
-
-const Numselect = () => {
+// porps ko destructure krna
+const Numselect = ({ num, setnum, error, seterror }) => {
   const numarr = [1, 2, 3, 4, 5, 6];
 
-  const [num, setnum] = useState();
+  const numselecthandler = (value) => {
+    setnum(value);
+    seterror("");
+  };
 
   return (
     <Numlist>
+      <p>{error}</p>
       <div className="flex">
         {numarr.map((value, i) => (
-          <Box isselected={value === num} key={i} onClick={() => setnum(value)}>
+          <Box
+            isselected={value === num}
+            key={i}
+            onClick={() => numselecthandler(value)}
+          >
             {value}
           </Box>
         ))}

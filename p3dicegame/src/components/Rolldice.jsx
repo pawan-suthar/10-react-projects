@@ -1,18 +1,6 @@
-import { useState } from "react";
 import styled from "styled-components";
-
-const Rolldice = () => {
-  const [currdice, setcurdice] = useState(1);
-
-  const Genraterandomnum = (min, max) => {
-    return Math.floor(Math.random() * (max - min) + min);
-  };
-
-  const setdice = () => {
-    const randomnumber = Genraterandomnum(1, 7);
-    setcurdice((prev) => randomnumber);
-  };
-
+// porps ko destructure krna
+const Rolldice = ({ currdice, setdice }) => {
   return (
     <DiceContainer>
       <div className="dice" onClick={setdice}>
