@@ -3,7 +3,7 @@ import Home from "./components/Home";
 import Gamestart from "./components/Gamestart";
 
 function App() {
-  const [isgamestart, setisgamestart] = useState(false);
+  const [isgamestart, setisgamestart] = useState(true);
 
   const tglgameplay = () => {
     setisgamestart((prev) => !prev);
