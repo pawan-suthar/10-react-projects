@@ -32,7 +32,7 @@ const Foodcardcontainer = styled.section`
   background-image: url("/bg.png");
   background-size: cover;
 
-  height: calc(100vh - 210px);
+  min-height: calc(100vh - 210px);
 `;
 
 const Foodcards = styled.div`
@@ -105,4 +105,8 @@ const Button = styled.button`
   padding: 6px 12px;
   border: none;
   color: white;
+  cursor: pointer;
+  &:hover {
+    background-color: #ff3232;
+  }
 `;

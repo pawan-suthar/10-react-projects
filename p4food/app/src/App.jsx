@@ -8,6 +8,7 @@ const App = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [filter, setFilter] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,6 +17,7 @@ const App = () => {
         const response = await fetch(BASE_URL);
         const json = await response.json();
         setData(json);
+        setFilter(json);
         setLoading(false);
       } catch (err) {
         setError("unable to fetch data");
@@ -24,22 +26,31 @@ const App = () => {
     fetchData();
   }, []);
 
-  if (error) return <div>{error}</div>;
-  if (loading) return <div>loading...</div>;
+  const serchfood = (e) => {
+    const serchvalue = e.target.value;
+    if (serchvalue === "") {
+      setFilter(null);
+    }
+    // method to serch items
+    const filterdata = data?.filter((food) =>
+      food.name.toLowerCase().includes(serchvalue.toLowerCase())
+    );
+    setFilter(filterdata);
+  };
 
   return (
     <>
       <Container>
-        {/* header sectio */}
+        {/* header section */}
         <Headerection>
           <div className="log">
             <img src="/logo.svg" alt="logo" />
           </div>
           <div className="search">
-            <input placeholder="Search for food" />
+            <input onChange={serchfood} placeholder="Search for food" />
           </div>
         </Headerection>
-        {/* end header  */}
+        {/* end header */}
         {/* filter btns */}
         <Filterbtns>
           <Button>All</Button>
@@ -49,7 +60,9 @@ const App = () => {
         </Filterbtns>
         {/* end btns */}
       </Container>
-      <Serchresult data={data} />
+      {error && <div>{error}</div>}
+      {loading && <div>loading...</div>}
+      <Serchresult data={filter} />
     </>
   );
 };
@@ -97,4 +110,8 @@ const Button = styled.button`
   padding: 6px 12px;
   border: none;
   color: white;
+  cursor: pointer;
+  &:hover {
+    background-color: #ff3232;
+  }
 `;
