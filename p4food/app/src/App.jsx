@@ -1,6 +1,32 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import Serchresult from "./components/Serchresult";
+
+export const BASE_URL = "http://localhost:9000";
 
 const App = () => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(BASE_URL);
+        const json = await response.json();
+        setData(json);
+        setLoading(false);
+      } catch (err) {
+        setError("unable to fetch data");
+      }
+    };
+    fetchData();
+  }, []);
+
+  if (error) return <div>{error}</div>;
+  if (loading) return <div>loading...</div>;
+
   return (
     <Container>
       {/* header sectio */}
@@ -21,11 +47,14 @@ const App = () => {
         <Button>Dinner</Button>
       </Filterbtns>
       {/* end btns */}
+      <Serchresult data={data} />
     </Container>
   );
 };
 
 export default App;
+
+// styled components css
 
 const Container = styled.div`
   /* background-color: #323334; */
@@ -57,6 +86,7 @@ const Filterbtns = styled.section`
   display: flex;
   justify-content: center;
   gap: 12px;
+  padding-bottom: 40px;
 `;
 
 const Button = styled.button`
