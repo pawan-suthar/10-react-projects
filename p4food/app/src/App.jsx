@@ -3,6 +3,7 @@ import styled from "styled-components";
 const App = () => {
   return (
     <Container>
+      {/* header sectio */}
       <Headerection>
         <div className="log">
           <img src="/logo.svg" alt="logo" />
@@ -11,6 +12,15 @@ const App = () => {
           <input placeholder="Search for food" />
         </div>
       </Headerection>
+      {/* end header  */}
+      {/* filter btns */}
+      <Filterbtns>
+        <Button>All</Button>
+        <Button>Breakfast</Button>
+        <Button>Lunch</Button>
+        <Button>Dinner</Button>
+      </Filterbtns>
+      {/* end btns */}
     </Container>
   );
 };
@@ -41,4 +51,18 @@ const Headerection = styled.section`
       padding: 0 10px;
     }
   }
+`;
+
+const Filterbtns = styled.section`
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+`;
+
+const Button = styled.button`
+  background: #ff4343;
+  border-radius: 5px;
+  padding: 6px 12px;
+  border: none;
+  color: white;
 `;
