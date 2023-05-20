@@ -28,27 +28,29 @@ const App = () => {
   if (loading) return <div>loading...</div>;
 
   return (
-    <Container>
-      {/* header sectio */}
-      <Headerection>
-        <div className="log">
-          <img src="/logo.svg" alt="logo" />
-        </div>
-        <div className="search">
-          <input placeholder="Search for food" />
-        </div>
-      </Headerection>
-      {/* end header  */}
-      {/* filter btns */}
-      <Filterbtns>
-        <Button>All</Button>
-        <Button>Breakfast</Button>
-        <Button>Lunch</Button>
-        <Button>Dinner</Button>
-      </Filterbtns>
-      {/* end btns */}
+    <>
+      <Container>
+        {/* header sectio */}
+        <Headerection>
+          <div className="log">
+            <img src="/logo.svg" alt="logo" />
+          </div>
+          <div className="search">
+            <input placeholder="Search for food" />
+          </div>
+        </Headerection>
+        {/* end header  */}
+        {/* filter btns */}
+        <Filterbtns>
+          <Button>All</Button>
+          <Button>Breakfast</Button>
+          <Button>Lunch</Button>
+          <Button>Dinner</Button>
+        </Filterbtns>
+        {/* end btns */}
+      </Container>
       <Serchresult data={data} />
-    </Container>
+    </>
   );
 };
 
@@ -56,7 +58,7 @@ export default App;
 
 // styled components css
 
-const Container = styled.div`
+export const Container = styled.div`
   /* background-color: #323334; */
   max-width: 1200px;
   margin: 0 auto;
