@@ -9,6 +9,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [filter, setFilter] = useState(null);
+  const [btn, setBtn] = useState("all");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,6 +26,19 @@ const App = () => {
     };
     fetchData();
   }, []);
+
+  const filterbtn = (type) => {
+    if (type === "all") {
+      setFilter(data);
+      setBtn("all");
+      return;
+    }
+    const filter = data?.filter((food) =>
+      food.type.toLowerCase().includes(type.toLowerCase())
+    );
+    setFilter(filter);
+    setBtn(type);
+  };
 
   const serchfood = (e) => {
     const serchvalue = e.target.value;
@@ -53,10 +67,10 @@ const App = () => {
         {/* end header */}
         {/* filter btns */}
         <Filterbtns>
-          <Button>All</Button>
-          <Button>Breakfast</Button>
-          <Button>Lunch</Button>
-          <Button>Dinner</Button>
+          <Button onClick={() => filterbtn("all")}>All</Button>
+          <Button onClick={() => filterbtn("breakfast")}>Breakfast</Button>
+          <Button onClick={() => filterbtn("lunch")}>Lunch</Button>
+          <Button onClick={() => filterbtn("dinner")}>Dinner</Button>
         </Filterbtns>
         {/* end btns */}
       </Container>
@@ -78,7 +92,7 @@ export const Container = styled.div`
 `;
 
 const Headerection = styled.section`
-  min-height: 140px;
+  height: 140px;
   display: flex;
   align-items: center;
   padding: 16px;
@@ -93,7 +107,15 @@ const Headerection = styled.section`
       height: 40px;
       font-size: 16px;
       padding: 0 10px;
+      &::placeholder {
+        color: white;
+      }
     }
+  }
+
+  @media (0 < width < 600px) {
+    flex-direction: column;
+    height: 120px;
   }
 `;
 
