@@ -6,6 +6,7 @@ import { IoMdPersonAdd } from "react-icons/io";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./config/firebase";
 import Modal from "./components/Modal";
+import Addandupdate from "./components/Addandupdate";
 
 const App = () => {
   const [contacts, setcontacts] = useState([]);
@@ -62,10 +63,7 @@ const App = () => {
           ))}
         </div>
       </div>
-
-      <Modal isOpen={isOpen} onClose={onClose}>
-        hii dfsdfsdfdsfsd
-      </Modal>
+      <Addandupdate onClose={onClose} isOpen={isOpen} />
     </>
   );
 };
