@@ -10,6 +10,7 @@ import Addandupdate from "./components/Addandupdate";
 import Usedisclose from "./hooks/Usedisclose";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Nofound from "./components/Nofound";
 
 const App = () => {
   const [contacts, setcontacts] = useState([]);
@@ -80,9 +81,13 @@ const App = () => {
           />
         </div>
         <div className="mt-4 flex flex-col gap-3">
-          {contacts.map((contact) => (
-            <ContactCard key={contact} contact={contact} />
-          ))}
+          {contacts.length <= 0 ? (
+            <Nofound />
+          ) : (
+            contacts.map((contact) => (
+              <ContactCard key={contact} contact={contact} />
+            ))
+          )}
         </div>
       </div>
       <Addandupdate onClose={onClose} isOpen={isOpen} />
