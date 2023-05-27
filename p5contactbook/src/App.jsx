@@ -5,9 +5,19 @@ import ContactCard from "./components/ContactCard";
 import { IoMdPersonAdd } from "react-icons/io";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./config/firebase";
+import Modal from "./components/Modal";
 
 const App = () => {
   const [contacts, setcontacts] = useState([]);
+
+  const [isOpen, setOpen] = useState(false);
+
+  const onOpen = () => {
+    setOpen(true);
+  };
+  const onClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     const getcontacts = async () => {
@@ -29,25 +39,34 @@ const App = () => {
   }, []);
 
   return (
-    <div className="mx-auto max-w-[370px]  px-4">
-      <Navbar />
-      <div className="flex gap-2 ">
-        <div className=" relative flex flex-grow items-center   ">
-          <BiSearchAlt className=" absolute ml-2 text-2xl text-white" />
-          <input
-            type="text"
-            className="h-10 flex-grow rounded-md border border-white bg-transparent pl-9 text-white"
+    <>
+      <div className="mx-auto max-w-[370px]  px-4">
+        <Navbar />
+        <div className="flex gap-2 ">
+          <div className=" relative flex flex-grow items-center   ">
+            <BiSearchAlt className=" absolute ml-2 text-2xl text-white" />
+            <input
+              type="text"
+              className="h-10 flex-grow rounded-md border border-white bg-transparent pl-9 text-white"
+            />
+          </div>
+
+          <IoMdPersonAdd
+            onClick={onOpen}
+            className="mt-1 cursor-pointer items-center text-3xl text-white "
           />
         </div>
+        <div className="mt-4 flex flex-col gap-3">
+          {contacts.map((contact) => (
+            <ContactCard key={contact} contact={contact} />
+          ))}
+        </div>
+      </div>
 
-        <IoMdPersonAdd className="mt-1 cursor-pointer items-center text-3xl text-white " />
-      </div>
-      <div className="mt-4 flex flex-col gap-3">
-        {contacts.map((contact) => (
-          <ContactCard key={contact} contact={contact} />
-        ))}
-      </div>
-    </div>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        hii dfsdfsdfdsfsd
+      </Modal>
+    </>
   );
 };
 
