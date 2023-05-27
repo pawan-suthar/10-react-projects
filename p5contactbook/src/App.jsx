@@ -8,6 +8,8 @@ import { db } from "./config/firebase";
 import Modal from "./components/Modal";
 import Addandupdate from "./components/Addandupdate";
 import Usedisclose from "./hooks/Usedisclose";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const [contacts, setcontacts] = useState([]);
@@ -62,6 +64,7 @@ const App = () => {
         </div>
       </div>
       <Addandupdate onClose={onClose} isOpen={isOpen} />
+      <ToastContainer position="bottom-center" />
     </>
   );
 };
