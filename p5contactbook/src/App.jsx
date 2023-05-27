@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import { BiSearchAlt } from "react-icons/bi";
 import ContactCard from "./components/ContactCard";
 import { IoMdPersonAdd } from "react-icons/io";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import { db } from "./config/firebase";
 import Modal from "./components/Modal";
 import Addandupdate from "./components/Addandupdate";
@@ -18,14 +18,18 @@ const App = () => {
     const getcontacts = async () => {
       try {
         const contactsref = collection(db, "contacts");
-        const contactsnap = await getDocs(contactsref);
-        const contactlist = contactsnap.docs.map((doc) => {
-          return {
-            id: doc.id,
-            ...doc.data(),
-          };
+        // const contactsnap = await getDocs(contactsref);
+
+        onSnapshot(contactsref, (snapshot) => {
+          const contactlist = snapshot.docs.map((doc) => {
+            return {
+              id: doc.id,
+              ...doc.data(),
+            };
+          });
+          setcontacts(contactlist);
+          return contactlist;
         });
-        setcontacts(contactlist);
       } catch (error) {
         console.log(error);
       }
