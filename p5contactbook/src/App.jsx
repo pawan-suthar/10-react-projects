@@ -7,18 +7,12 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "./config/firebase";
 import Modal from "./components/Modal";
 import Addandupdate from "./components/Addandupdate";
+import Usedisclose from "./hooks/Usedisclose";
 
 const App = () => {
   const [contacts, setcontacts] = useState([]);
 
-  const [isOpen, setOpen] = useState(false);
-
-  const onOpen = () => {
-    setOpen(true);
-  };
-  const onClose = () => {
-    setOpen(false);
-  };
+  const { isOpen, onClose, onOpen } = Usedisclose(false);
 
   useEffect(() => {
     const getcontacts = async () => {

@@ -1,10 +1,10 @@
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import Modal from "./Modal";
 import { Formik, Form, Field } from "formik";
 import { db } from "../config/firebase";
 
 // add contact function
-const Addandupdate = ({ isOpen, onClose }) => {
+const Addandupdate = ({ isOpen, onClose, isUpdate, contact }) => {
   const addcontact = async (contact) => {
     try {
       // a ref with database and name of db
@@ -16,17 +16,37 @@ const Addandupdate = ({ isOpen, onClose }) => {
     }
   };
 
+  const updatecontact = async (contact, id) => {
+    try {
+      // a ref with database and name of db
+      const contactref = doc(db, "contacts", id);
+      //   add doc to db
+      await updateDoc(contactref, contact);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <Modal isOpen={isOpen} onClose={onClose}>
         <Formik
-          initialValues={{
-            name: "",
-            email: "",
-          }}
+          initialValues={
+            isUpdate
+              ? {
+                  name: contact.name,
+                  email: contact.email,
+                }
+              : {
+                  name: "",
+                  email: "",
+                }
+          }
           onSubmit={(values) => {
-            // by click on add call this function
-            addcontact(values);
+            isUpdate
+              ? updatecontact(values, contact.id)
+              : // by click on add call
+                addcontact(values);
           }}
         >
           <Form className="flex flex-col gap-3  ">
@@ -39,7 +59,7 @@ const Addandupdate = ({ isOpen, onClose }) => {
               <Field name="email" type="email" className="h-8 border" />
             </div>
             <button className="self-end border bg-orange px-3 py-1.5 ">
-              Add
+              {isUpdate ? "Update" : "Add"}
             </button>
           </Form>
         </Formik>
