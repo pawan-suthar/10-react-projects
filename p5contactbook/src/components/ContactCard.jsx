@@ -2,8 +2,19 @@
 import { HiOutlineUser } from "react-icons/hi";
 import { CiEdit } from "react-icons/ci";
 import { IoMdTrash } from "react-icons/io";
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../config/firebase";
 
+// function to delete contact
 const ContactCard = ({ contact }) => {
+  const deletecontact = async (id) => {
+    try {
+      await deleteDoc(doc(db, "contacts", id));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div
       key={contact.id}
@@ -18,7 +29,10 @@ const ContactCard = ({ contact }) => {
       </div>
       <div className="flex text-2xl">
         <CiEdit />
-        <IoMdTrash className="text-orange" />
+        <IoMdTrash
+          onClick={() => deletecontact(contact.id)}
+          className="text-orange"
+        />
       </div>
     </div>
   );
