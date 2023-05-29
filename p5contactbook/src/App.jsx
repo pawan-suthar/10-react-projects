@@ -3,12 +3,12 @@ import Navbar from "./components/Navbar";
 import { BiSearchAlt } from "react-icons/bi";
 import ContactCard from "./components/ContactCard";
 import { IoMdPersonAdd } from "react-icons/io";
-import { collection, getDocs, onSnapshot } from "firebase/firestore";
+import { collection, , onSnapshot } from "firebase/firestore";
 import { db } from "./config/firebase";
-import Modal from "./components/Modal";
+
 import Addandupdate from "./components/Addandupdate";
 import Usedisclose from "./hooks/Usedisclose";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Nofound from "./components/Nofound";
 
@@ -18,6 +18,7 @@ const App = () => {
   const { isOpen, onClose, onOpen } = Usedisclose(false);
 
   useEffect(() => {
+    
     const getcontacts = async () => {
       try {
         const contactsref = collection(db, "contacts");
