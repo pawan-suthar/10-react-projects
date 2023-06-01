@@ -20,5 +20,9 @@ body{
     flex-direction: column;
     justify-content: end;
   }
+
+li{
+    cursor: pointer;
+}
   
 

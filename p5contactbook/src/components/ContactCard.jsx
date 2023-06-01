@@ -1,5 +1,5 @@
 // eslint-disable-next-line react/prop-types
-import { HiOutlineUser } from "react-icons/hi";
+import { HiOutlineUser, HiOutlineUserAdd } from "react-icons/hi";
 import { CiEdit } from "react-icons/ci";
 import { IoMdTrash } from "react-icons/io";
 import { deleteDoc, doc } from "firebase/firestore";
