@@ -18,12 +18,12 @@ const Sidenav = () => {
   ];
 
   return (
-    <Stack justify="space-between" boxShadow="2xl" maxW="16rem" h="100vh">
+    <Stack justify="space-between" boxShadow="2xl" w="16rem" h="100vh">
       <Box>
         <Heading as="h1" fontSize="20px" pt="3.5rem" textAlign="center">
           @Crypto
         </Heading>
-        <Box mt="6" mx="3">
+        <Box mt="6" mx="3" cursor="pointer">
           {navlinks.map((nav) => (
             <HStack
               borderRadius="10px"
@@ -46,7 +46,7 @@ const Sidenav = () => {
         </Box>
       </Box>
 
-      <Box mt="6" mx="3" mb="6">
+      <Box mt="6" mx="3" mb="6" cursor="pointer">
         <HStack
           borderRadius="10px"
           mx="3"
