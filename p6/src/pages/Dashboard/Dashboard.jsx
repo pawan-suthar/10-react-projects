@@ -42,7 +42,7 @@ const Dashboard = ({}) => {
           <Infcards
             img="/contact-bg.svg"
             text="Learn more about our real estate, mortgage, and  corporate account services"
-            tagtext="Conact"
+            tagtext="Contact"
             inverted={true}
           />
         </GridItem>

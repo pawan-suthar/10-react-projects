@@ -42,7 +42,9 @@ const TransactionPage = () => {
   return (
     <Dashboardlayout title="Transaction">
       <Flex justify="end" mt="6" mb="3">
-        <Button leftIcon={<Icon as={HiDownload} />}>Export CSV</Button>
+        <Button fontSize="sm" leftIcon={<Icon as={HiDownload} />}>
+          Export CSV
+        </Button>
       </Flex>
       <Card borderRadius="1rem">
         <Tabs>
